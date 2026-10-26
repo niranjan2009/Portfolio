@@ -1,0 +1,119 @@
+/* ==========================================================================
+   SILICON GEEK — Signature Animation Stylesheet (style.css)
+   Replicates the Adobe After Effects Glowing Cyan Trail + White Ink Reveal
+   ========================================================================== */
+
+:root {
+  --bg-color: #000000;
+  --ink-color: #ffffff;
+  --trail-color: #2dd4bf;
+  --trail-glow: #00f5d4;
+  --subtitle-color: #f1f5f9;
+  --stroke-width: 6.2px;
+  --trail-width: 7.5px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--ink-color);
+  font-family: 'Montserrat', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+.signature-stage {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.signature-svg {
+  width: 100%;
+  height: auto;
+  max-height: 65vh;
+  overflow: visible;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.15));
+}
+
+/* Base White Ink Strokes */
+.sig-ink {
+  fill: none;
+  stroke: var(--ink-color);
+  stroke-width: var(--stroke-width);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 0;
+  stroke-dashoffset: 0;
+  opacity: 0;
+}
+
+/* Glowing Cyan/Teal Leading Laser Trail (Adobe After Effects Trim Paths Effect) */
+.sig-trail {
+  fill: none;
+  stroke: var(--trail-color);
+  stroke-width: var(--trail-width);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: url(#cyan-glow);
+  opacity: 0;
+}
+
+/* Glowing Leading Pen Tip Dot */
+.pen-tip-glow {
+  fill: #ffffff;
+  filter: url(#cyan-glow);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Optional Underline Accent Rule */
+.sig-underline {
+  fill: none;
+  stroke: var(--ink-color);
+  stroke-width: 2.2px;
+  stroke-linecap: round;
+  opacity: 0;
+}
+
+.sig-underline-trail {
+  fill: none;
+  stroke: var(--trail-color);
+  stroke-width: 3.5px;
+  stroke-linecap: round;
+  filter: url(#cyan-glow);
+  opacity: 0;
+}
+
+/* "SILICON GEEK" Subtitle Typography */
+.sig-subtitle {
+  fill: var(--subtitle-color);
+  font-family: 'Montserrat', 'Inter', sans-serif;
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: 0.58em;
+  text-anchor: middle;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sig-subtitle.visible {
+  opacity: 0.94;
+  transform: translateY(0);
+}
